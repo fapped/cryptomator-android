@@ -24,6 +24,19 @@ To connect, create a personal API access token with permission "All" in the Drim
 
 ## Building
 
+### Release signing (fork)
+
+Create `keystore.properties` in the root of the repository (ignored by git) to sign release builds with your own key:
+
+```properties
+storeFile=~/cryptomator-release.jks
+storePassword=...
+keyAlias=cryptomator
+keyPassword=...
+```
+
+`keyPassword` can be left out if it equals `storePassword`. Then `./gradlew :presentation:assembleLiteRelease -x lintVitalLiteRelease` writes a signed APK to `presentation/build/outputs/apk/lite/release/`. The lint check is skipped because it fails on an upstream resource (`ic_license_key` exists only in `drawable-night`).
+
 ### Dependencies
 
 * Git

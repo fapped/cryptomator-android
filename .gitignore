@@ -55,3 +55,9 @@ local.properties
 # Fluid Attacks
 **/fastlane/fluidattacks/results.csv
 **/fastlane/fluidattacks/apks/**
+
+# Release signing (keystore and its passwords), see README.md
+/keystore.properties
+*.jks
+*.keystore
+!/presentation/debug.keystore
