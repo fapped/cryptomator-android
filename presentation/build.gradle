@@ -130,7 +130,8 @@ android {
 		lite {
 			dimension "version"
 
-			applicationIdSuffix ".lite"
+			// fork: own package, installs next to Cryptomator and Cryptomator Lite
+			applicationIdSuffix ".drime"
 			resValue "string", "app_id", androidApplicationId + applicationIdSuffix
 		}
 

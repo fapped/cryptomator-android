@@ -20,6 +20,8 @@ Cryptomator for Android is currently available in the following  distribution ch
 
 This fork adds [Drime](https://drime.cloud) as a cloud service, available in all variants (including Lite) and not requiring any build-time API key.
 
+The Lite variant of this fork is named `cryptomator-drime` and uses the package `org.cryptomator.drime`, so it installs next to Cryptomator and Cryptomator Lite.
+
 To connect, create a personal API access token with permission "All" in the Drime web app under *Account settings → Developers* and paste it into the Drime screen of the app. The token is stored encrypted on the device. Deleted files are moved to the Drime trash.
 
 ## Building
