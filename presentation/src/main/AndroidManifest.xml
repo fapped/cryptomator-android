@@ -153,6 +153,9 @@
 		<activity
 			android:name=".ui.activity.S3AddOrChangeActivity"
 			android:exported="false" />
+		<activity
+			android:name=".ui.activity.DrimeAddOrChangeActivity"
+			android:exported="false" />
 
 		<activity
 			android:name=".ui.activity.AuthenticateCloudActivity"

@@ -16,6 +16,12 @@ Cryptomator for Android is currently available in the following  distribution ch
 5. [Using Accrescent](https://accrescent.app/app/org.cryptomator)
 6. Building from source using Gradle (instructions below)
 
+## Drime support (fork)
+
+This fork adds [Drime](https://drime.cloud) as a cloud service, available in all variants (including Lite) and not requiring any build-time API key.
+
+To connect, create a personal API access token with permission "All" in the Drime web app under *Account settings → Developers* and paste it into the Drime screen of the app. The token is stored encrypted on the device. Deleted files are moved to the Drime trash.
+
 ## Building
 
 ### Dependencies

@@ -7,6 +7,7 @@ import org.cryptomator.presentation.R
 import org.cryptomator.presentation.databinding.DialogBottomSheetCloudSettingsBinding
 import org.cryptomator.presentation.model.BoxCloudModel
 import org.cryptomator.presentation.model.CloudModel
+import org.cryptomator.presentation.model.DrimeCloudModel
 import org.cryptomator.presentation.model.LocalStorageModel
 import org.cryptomator.presentation.model.OnedriveCloudModel
 import org.cryptomator.presentation.model.PCloudModel
@@ -33,6 +34,7 @@ class CloudConnectionSettingsBottomSheet : BaseBottomSheet<CloudConnectionSettin
 			is PCloudModel -> bindViewForPCloud(cloudModel)
 			is BoxCloudModel -> bindViewForBox(cloudModel)
 			is S3CloudModel -> bindViewForS3(cloudModel)
+			is DrimeCloudModel -> bindViewForDrime(cloudModel)
 			is LocalStorageModel -> bindViewForLocal(cloudModel)
 			else -> throw IllegalStateException("Cloud model is not binded in the view")
 		}
@@ -86,6 +88,11 @@ class CloudConnectionSettingsBottomSheet : BaseBottomSheet<CloudConnectionSettin
 	}
 
 	private fun bindViewForS3(cloudModel: S3CloudModel) {
+		binding.changeCloud.visibility = View.VISIBLE
+		binding.tvCloudName.text = cloudModel.username()
+	}
+
+	private fun bindViewForDrime(cloudModel: DrimeCloudModel) {
 		binding.changeCloud.visibility = View.VISIBLE
 		binding.tvCloudName.text = cloudModel.username()
 	}

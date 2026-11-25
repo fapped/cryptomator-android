@@ -5,6 +5,7 @@ import org.cryptomator.domain.Cloud
 import org.cryptomator.domain.LocalStorageCloud
 import org.cryptomator.domain.OnedriveCloud
 import org.cryptomator.domain.PCloud
+import org.cryptomator.domain.DrimeCloud
 import org.cryptomator.domain.S3Cloud
 import org.cryptomator.domain.SharepointCloud
 import org.cryptomator.domain.WebDavCloud
@@ -24,6 +25,7 @@ import org.cryptomator.presentation.model.CloudTypeModel
 import org.cryptomator.presentation.model.LocalStorageModel
 import org.cryptomator.presentation.model.OnedriveCloudModel
 import org.cryptomator.presentation.model.PCloudModel
+import org.cryptomator.presentation.model.DrimeCloudModel
 import org.cryptomator.presentation.model.S3CloudModel
 import org.cryptomator.presentation.model.SharepointCloudModel
 import org.cryptomator.presentation.model.WebDavCloudModel
@@ -98,6 +100,7 @@ class CloudSettingsPresenter @Inject constructor( //
 			CloudTypeModel.BOX -> return context().getString(R.string.screen_cloud_settings_box_connections)
 			CloudTypeModel.WEBDAV -> return context().getString(R.string.screen_cloud_settings_webdav_connections)
 			CloudTypeModel.S3 -> return context().getString(R.string.screen_cloud_settings_s3_connections)
+			CloudTypeModel.DRIME -> return context().getString(R.string.screen_cloud_settings_drime_connections)
 			CloudTypeModel.LOCAL -> return context().getString(R.string.screen_cloud_settings_local_storage_locations)
 			else -> {}
 		}
@@ -141,6 +144,7 @@ class CloudSettingsPresenter @Inject constructor( //
 					it.add(aWebdavCloud())
 					it.addAll(webDavProviderClouds(clouds))
 					it.add(aS3Cloud())
+					it.add(aDrimeCloud())
 					it.add(aLocalCloud())
 				}
 				.filter { cloud -> !(FlavorConfig.isLiteFlavor && excludeApiCloudsInLite(cloud.cloudType())) } //
@@ -201,6 +205,10 @@ class CloudSettingsPresenter @Inject constructor( //
 
 		private fun aS3Cloud(): S3CloudModel {
 			return S3CloudModel(S3Cloud.aS3Cloud().build())
+		}
+
+		private fun aDrimeCloud(): DrimeCloudModel {
+			return DrimeCloudModel(DrimeCloud.aDrimeCloud().build())
 		}
 
 		private fun aLocalCloud(): CloudModel {

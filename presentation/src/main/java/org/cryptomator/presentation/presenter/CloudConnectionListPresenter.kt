@@ -32,6 +32,7 @@ import org.cryptomator.presentation.model.CloudTypeModel
 import org.cryptomator.presentation.model.LocalStorageModel
 import org.cryptomator.presentation.model.ProgressModel
 import org.cryptomator.presentation.model.ProgressStateModel
+import org.cryptomator.presentation.model.DrimeCloudModel
 import org.cryptomator.presentation.model.S3CloudModel
 import org.cryptomator.presentation.model.WebDavCloudModel
 import org.cryptomator.presentation.model.mappers.CloudModelMapper
@@ -151,6 +152,7 @@ class CloudConnectionListPresenter @Inject constructor( //
 			CloudTypeModel.PCLOUD -> requestActivityResult(ActivityResultCallbacks.pCloudAuthenticationFinished(), Intents.authenticatePCloudIntent())
 			CloudTypeModel.BOX -> requestActivityResult(ActivityResultCallbacks.boxAuthenticationFinished(), Intents.authenticateBoxIntent())
 			CloudTypeModel.S3 -> requestActivityResult(ActivityResultCallbacks.addChangeMultiCloud(), Intents.s3AddOrChangeIntent())
+			CloudTypeModel.DRIME -> requestActivityResult(ActivityResultCallbacks.addChangeMultiCloud(), Intents.drimeAddOrChangeIntent())
 			CloudTypeModel.LOCAL -> openDocumentTree()
 			else -> addWebDavProviderCloud()
 		}
@@ -292,6 +294,13 @@ class CloudConnectionListPresenter @Inject constructor( //
 					ActivityResultCallbacks.addChangeMultiCloud(),  //
 					Intents.s3AddOrChangeIntent() //
 						.withS3Cloud(cloudModel as S3CloudModel)
+				)
+			}
+			cloudModel is DrimeCloudModel -> {
+				requestActivityResult(
+					ActivityResultCallbacks.addChangeMultiCloud(),  //
+					Intents.drimeAddOrChangeIntent() //
+						.withDrimeCloud(cloudModel)
 				)
 			}
 			else -> {

@@ -4,6 +4,7 @@ import org.cryptomator.data.db.entities.CloudEntity;
 import org.cryptomator.domain.BoxCloud;
 import org.cryptomator.domain.Cloud;
 import org.cryptomator.domain.CloudType;
+import org.cryptomator.domain.DrimeCloud;
 import org.cryptomator.domain.DropboxCloud;
 import org.cryptomator.domain.GoogleDriveCloud;
 import org.cryptomator.domain.LocalStorageCloud;
@@ -18,6 +19,7 @@ import javax.inject.Inject;
 import javax.inject.Singleton;
 
 import static org.cryptomator.domain.BoxCloud.aBoxCloud;
+import static org.cryptomator.domain.DrimeCloud.aDrimeCloud;
 import static org.cryptomator.domain.DropboxCloud.aDropboxCloud;
 import static org.cryptomator.domain.GoogleDriveCloud.aGoogleDriveCloud;
 import static org.cryptomator.domain.LocalStorageCloud.aLocalStorage;
@@ -91,6 +93,12 @@ public class CloudEntityMapper extends EntityMapper<CloudEntity, Cloud> {
 						.withS3Bucket(entity.getS3Bucket()) //
 						.withDisplayName(entity.getUsername()) //
 						.build();
+			case DRIME:
+				return aDrimeCloud() //
+						.withId(entity.getId()) //
+						.withAccessToken(entity.getAccessToken()) //
+						.withUsername(entity.getUsername()) //
+						.build();
 			case WEBDAV:
 				return aWebDavCloudCloud() //
 						.withId(entity.getId()) //
@@ -148,6 +156,10 @@ public class CloudEntityMapper extends EntityMapper<CloudEntity, Cloud> {
 				result.setS3SecretKey(((S3Cloud) domainObject).secretKey());
 				result.setS3Bucket(((S3Cloud) domainObject).s3Bucket());
 				result.setUsername(((S3Cloud) domainObject).displayName());
+				break;
+			case DRIME:
+				result.setAccessToken(((DrimeCloud) domainObject).accessToken());
+				result.setUsername(((DrimeCloud) domainObject).username());
 				break;
 			case WEBDAV:
 				result.setAccessToken(((WebDavCloud) domainObject).password());

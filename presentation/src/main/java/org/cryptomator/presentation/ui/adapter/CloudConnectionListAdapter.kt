@@ -9,6 +9,7 @@ import org.cryptomator.domain.exception.FatalBackendException
 import org.cryptomator.presentation.databinding.ItemBrowseCloudModelConnectionsBinding
 import org.cryptomator.presentation.model.BoxCloudModel
 import org.cryptomator.presentation.model.CloudModel
+import org.cryptomator.presentation.model.DrimeCloudModel
 import org.cryptomator.presentation.model.LocalStorageModel
 import org.cryptomator.presentation.model.OnedriveCloudModel
 import org.cryptomator.presentation.model.PCloudModel
@@ -74,6 +75,9 @@ internal constructor(context: Context) : RecyclerViewBaseAdapter<CloudModel, Clo
 				is S3CloudModel -> {
 					bindS3loudModel(cloudModel)
 				}
+				is DrimeCloudModel -> {
+					bindDrimeCloudModel(cloudModel)
+				}
 				is LocalStorageModel -> {
 					bindLocalStorageCloudModel(cloudModel)
 				}
@@ -113,6 +117,11 @@ internal constructor(context: Context) : RecyclerViewBaseAdapter<CloudModel, Clo
 
 
 		private fun bindS3loudModel(cloudModel: S3CloudModel) {
+			binding.llCloudConnectionContent.cloudText.text = cloudModel.username()
+			binding.llCloudConnectionContent.cloudSubText.visibility = View.GONE
+		}
+
+		private fun bindDrimeCloudModel(cloudModel: DrimeCloudModel) {
 			binding.llCloudConnectionContent.cloudText.text = cloudModel.username()
 			binding.llCloudConnectionContent.cloudSubText.visibility = View.GONE
 		}

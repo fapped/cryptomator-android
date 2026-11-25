@@ -118,6 +118,7 @@
 	<string name="cloud_names_box" translatable="false">Box</string>
 	<string name="cloud_names_webdav" translatable="false">WebDAV</string>
 	<string name="cloud_names_s3" translatable="false">S3</string>
+	<string name="cloud_names_drime" translatable="false">Drime</string>
 	<string name="cloud_names_local_storage">Local storage</string>
 	<string name="cloud_names_one_and_one" translatable="false">1&amp;1 Online-Speicher</string>
 	<string name="cloud_names_disroot" translatable="false">Disroot</string>
@@ -297,6 +298,13 @@
 	<string name="screen_webdav_settings_magentacloud_hint">Create a WebDAV protocol password in your MagentaCLOUD settings and use it instead of your account password.</string>
 	<string name="screen_webdav_settings_opencloud_hint">Create an app token under Settings &gt; App Tokens and use it as password. You find the space ID in the info panel of the space.</string>
 
+	<!-- ## screen: drime settings -->
+	<string name="screen_drime_settings_title" translatable="false">@string/cloud_names_drime</string>
+	<string name="screen_drime_settings_access_token_label">API Access Token</string>
+	<string name="screen_drime_settings_access_token_hint">Create an API access token with permission \"All\" in the developer settings of your Drime account and paste it here.</string>
+	<string name="screen_drime_settings_open_developer_settings">Open Drime developer settings</string>
+	<string name="screen_drime_settings_msg_access_token_not_empty">API Access Token can\'t be empty</string>
+
 	<!-- ## screen: s3 settings -->
 	<string name="screen_s3_settings_title" translatable="false">@string/cloud_names_s3</string>
 	<string name="screen_s3_settings_display_name_label">Display Name</string>
@@ -414,6 +422,7 @@
 	<string name="screen_cloud_settings_pcloud_connections">pCloud connections</string>
 	<string name="screen_cloud_settings_box_connections">Box connections</string>
 	<string name="screen_cloud_settings_s3_connections">S3 connections</string>
+	<string name="screen_cloud_settings_drime_connections">Drime connections</string>
 	<string name="screen_cloud_settings_local_storage_locations">Local storage locations</string>
 	<string name="screen_cloud_settings_log_in_to">Log in to</string>
 	<string name="screen_cloud_settings_sign_out_from_cloud">Sign out from</string>

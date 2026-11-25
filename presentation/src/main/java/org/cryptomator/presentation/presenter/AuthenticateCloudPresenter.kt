@@ -41,6 +41,7 @@ import org.cryptomator.presentation.model.CloudTypeModel
 import org.cryptomator.presentation.model.LocalStorageModel
 import org.cryptomator.presentation.model.ProgressModel
 import org.cryptomator.presentation.model.ProgressStateModel
+import org.cryptomator.presentation.model.DrimeCloudModel
 import org.cryptomator.presentation.model.S3CloudModel
 import org.cryptomator.presentation.model.WebDavCloudModel
 import org.cryptomator.presentation.model.mappers.CloudModelMapper
@@ -83,6 +84,7 @@ class AuthenticateCloudPresenter @Inject constructor( //
 		BoxAuthStrategy(), //
 		WebDAVAuthStrategy(),  //
 		S3AuthStrategy(), //
+		DrimeAuthStrategy(), //
 		LocalStorageAuthStrategy() //
 	)
 
@@ -536,6 +538,39 @@ class AuthenticateCloudPresenter @Inject constructor( //
 		private fun startAuthentication(cloud: CloudModel) {
 			authenticationStarted = true
 			startIntent(Intents.s3AddOrChangeIntent().withS3Cloud(cloud as S3CloudModel))
+		}
+	}
+
+	private inner class DrimeAuthStrategy : AuthStrategy {
+
+		private var authenticationStarted = false
+
+		override fun supports(cloud: CloudModel): Boolean {
+			return cloud.cloudType() == CloudTypeModel.DRIME
+		}
+
+		override fun resumed(intent: AuthenticateCloudIntent) {
+			when {
+				ExceptionUtil.contains(intent.error(), WrongCredentialsException::class.java) -> {
+					if (!authenticationStarted) {
+						startAuthentication(intent.cloud())
+						Toast.makeText(
+							context(),
+							String.format(getString(R.string.error_authentication_failed), intent.cloud().username()),
+							Toast.LENGTH_LONG
+						).show()
+					}
+				}
+				else -> {
+					Timber.tag("AuthicateCloudPrester").e(intent.error())
+					failAuthentication(intent.cloud().name())
+				}
+			}
+		}
+
+		private fun startAuthentication(cloud: CloudModel) {
+			authenticationStarted = true
+			startIntent(Intents.drimeAddOrChangeIntent().withDrimeCloud(cloud as DrimeCloudModel))
 		}
 	}
 
