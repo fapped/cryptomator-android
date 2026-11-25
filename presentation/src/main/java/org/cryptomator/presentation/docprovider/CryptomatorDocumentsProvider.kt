@@ -130,7 +130,7 @@ class CryptomatorDocumentsProvider : DocumentsProvider() {
 				add(Root.COLUMN_ROOT_ID, vault.id.toString())
 				add(Root.COLUMN_SUMMARY, vault.name)
 				add(Root.COLUMN_FLAGS, rootFlags(vault))
-				add(Root.COLUMN_TITLE, context?.getString(R.string.app_name) ?: "Cryptomator")
+				add(Root.COLUMN_TITLE, context?.getString(R.string.app_name) ?: "cryptomator-drime")
 				add(Root.COLUMN_DOCUMENT_ID, metadataCache.documentId(VaultPath(vault)))
 				add(Root.COLUMN_ICON, R.mipmap.ic_launcher)
 			}
